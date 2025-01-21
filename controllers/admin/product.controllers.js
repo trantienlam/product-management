@@ -29,23 +29,11 @@ module.exports.index = async (req, res) => {
   let objectPagination = paginationHelper(
     {
       currentPage: 1,
-      limitItems: 4,
+      limitItems: 3,
     },
     req.query,
     countProducts
   );
-
-  // if (req.query.page) {
-  //   objectPagination.currentPage = parseInt(req.query.page);
-  // }
-
-  // objectPagination.skip =
-  //   (objectPagination.currentPage - 1) * objectPagination.limitItems;
-
-  // const countProducts = await Product.countDocuments(find);
-  // const totalPage = Math.ceil(countProducts / objectPagination.limitItems);
-  // objectPagination.totalPage = totalPage;
-  //  End Pagination
 
   const products = await Product.find(find)
     .limit(objectPagination.limitItems)
